@@ -1,28 +1,20 @@
+import java.util.ArrayList;
 import java.util.List;
 
-public class Layer implements Mappable {
-    private List<Mappable> elements;
+public class Layer <T extends Mappable> {
+    private List<T> layerElements;
 
-    public Layer(List<Mappable> elements) {
-        this.elements = elements;
+    public Layer(T[] layerElements) {
+        this.layerElements = new ArrayList<>(List.of(layerElements));
     }
 
-    public List<Mappable> addElement(Mappable el) {
-        if(!elements.contains(el)) {
-            elements.add(el);
-        }
-
-        return elements;
+    public void addElements(T... elements) {
+       layerElements.addAll(List.of(elements));
     }
 
     public void renderLayer() {
-        for (Mappable el : elements) {
-            el.render();
+        for (T element : layerElements) {
+            element.render();
         }
-    }
-
-    @Override
-    public String render() {
-
     }
 }
