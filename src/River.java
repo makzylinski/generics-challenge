@@ -1,24 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
-
-record Coordinates(double lat, double log) {}
 public class River extends Line {
-    private List<Coordinates> line = new ArrayList<>();
+    private String name;
 
-    public River(double lat, double log) {
-        line.add(new Coordinates(lat, log));
-    }
-
-    public List<Coordinates> addLocations(Coordinates location) {
-        if(!line.contains(location)) {
-            line.add(location);
-        }
-
-        return line;
+    public River(String name, String... locations) {
+        super(locations);
+        this.name = name;
     }
 
     @Override
-    public void render() {
-
+    public String toString() {
+        return name + " Rive";
     }
 }
